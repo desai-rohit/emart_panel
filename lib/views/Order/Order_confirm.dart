@@ -33,60 +33,58 @@ class OrderConfirm extends StatelessWidget {
                     padding: const EdgeInsets.all(4),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16), color: white),
-                    child: Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                color: Colors.red,
-                                child: Image.network(
-                                  data["order"]["img"],
-                                  height: 100,
-                                  fit: BoxFit.cover,
-                                ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              color: Colors.red,
+                              child: Image.network(
+                                data["order"]["img"],
+                                height: 100,
+                                fit: BoxFit.cover,
                               ),
-                              SizedBox(
-                                width: 150,
-                                child: Text(
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  data["order"]["title"].toString(),
-                                  style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              Text("QTY ${data["order"]["qty"]}",
-                                  style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold)),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              Text(data["venderId"])
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                "RS ${data["order"]["tprice"]}",
+                            ),
+                            SizedBox(
+                              width: 150,
+                              child: Text(
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                data["order"]["title"].toString(),
                                 style: const TextStyle(
-                                    fontSize: 18,
-                                    color: red,
+                                    fontSize: 16,
                                     fontWeight: FontWeight.bold),
                               ),
-                            ],
-                          )
-                        ],
-                      ),
+                            ),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            Text("QTY ${data["order"]["qty"]}",
+                                style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold)),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            Text(data["venderId"])
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              "RS ${data["order"]["tprice"]}",
+                              style: const TextStyle(
+                                  fontSize: 18,
+                                  color: red,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        )
+                      ],
                     )),
                 Container(
                   margin: const EdgeInsets.all(16),

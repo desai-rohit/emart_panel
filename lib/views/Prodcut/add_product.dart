@@ -9,6 +9,7 @@ import 'package:ecommerse_seller_dev_app/views/widget/sizedbox_widget.dart';
 
 import 'package:flutter_material_pickers/helpers/show_color_picker.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 const List<String> list = <String>[
   'Man Shirt',
@@ -92,6 +93,8 @@ class _AddProductState extends State<AddProduct> {
 
     return Scaffold(
       appBar: AppBar(
+        title: const Text("Add Product"),
+        centerTitle: true,
         backgroundColor: redColor,
         actions: const [],
       ),
@@ -102,10 +105,7 @@ class _AddProductState extends State<AddProduct> {
             child: Obx(
               // ignore: unrelated_type_equality_checks
               () => controller.load == true
-                  ? const Center(
-                      child: CircularProgressIndicator(
-                      color: redColor,
-                    ))
+                  ? const Center(child: CircularProgressIndicator(),)
                   : Column(
                       children: [
                         VxSwiper.builder(
@@ -135,12 +135,19 @@ class _AddProductState extends State<AddProduct> {
                                 backgroundColor: Colors.red,
                                 textStyle: const TextStyle(fontSize: 15),
                               ),
-                              onPressed: () {
-                                controller.chnageImage(context);
+                              onPressed: () async {
+                                final status =
+                                    await Permission.photos.request();
+
+                                if (status.isGranted) {
+                                  controller.chnageImage(context);
+                                } else {
+                                  openAppSettings();
+                                }
                               },
                               child: const Text(
                                 'Select Images',
-                                style: TextStyle(color: white),
+                                style: TextStyle(color: Colors.white)
                               ),
                             ),
                             const SizedBox(

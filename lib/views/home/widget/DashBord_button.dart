@@ -6,10 +6,12 @@ Widget dashBoardWidget(
     required,
     required String icon,
     context}) {
+  var width = MediaQuery.of(context).size.width;
+  var height = MediaQuery.of(context).size.height;
   return Container(
     padding: const EdgeInsets.all(16),
-    width: MediaQuery.of(context).size.width * 0.45,
-    height: MediaQuery.of(context).size.width * 0.3,
+    width: width / 2.5,
+    height: width > 800 ? height / 6 : height / 6,
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16), color: purpleColor),
     child: Row(
@@ -34,7 +36,7 @@ Widget dashBoardWidget(
         ImageIcon(
           AssetImage(icon),
           color: white,
-          size: MediaQuery.of(context).size.width * 0.09,
+          size: 32,
         )
       ],
     ),

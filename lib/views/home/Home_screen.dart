@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerse_seller_dev_app/const/const.dart';
+import 'package:ecommerse_seller_dev_app/controllers/home_scntroller.dart';
 
 import 'package:ecommerse_seller_dev_app/services/store_services.dart';
 import 'package:ecommerse_seller_dev_app/views/Prodcut/product_edit_page.dart';
@@ -9,6 +10,8 @@ import 'package:ecommerse_seller_dev_app/views/widget/normal_text.dart';
 import 'package:ecommerse_seller_dev_app/views/widget/sizedbox_widget.dart';
 
 import 'package:get/get.dart';
+import 'package:collection/collection.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -18,7 +21,10 @@ class HomeScreen extends StatelessWidget {
     // var ordercontroller = Get.put(firebaseOrderController());
     // var controller = Get.put(AuthController());
     List<QueryDocumentSnapshot<Object?>> productdata;
-    List<String> totalRating = [];
+   // List totalRating = [5.0,5.0,4.1,4.5];
+     var controller = Get.put(HomeController());
+     // final sum = totalRating.sum;
+
 
     return StreamBuilder(
       stream: StoreServices.getOrderProduct(currentUser!.uid),
@@ -27,11 +33,32 @@ class HomeScreen extends StatelessWidget {
           return const Center(
             child: CircularProgressIndicator(),
           );
+        } else if (snapshot.data!.docs.isEmpty) {
+          return const Center(
+            child: Text("No Products"),
+          );
         } else {
           var data = snapshot.data!.docs;
           for (var i = 0; i < data.length; i++) {
-            totalRating.add(data[i]["review"]["rating"]);
-          }
+           // totalRating.add(data[i]["review"]["rating"]);
+           // print(data[i]["review"]["rating"]);
+           controller.totalRating.add(double.parse(data[i]["review"]["rating"]).toDouble());
+
+           controller.ratingsum();
+
+           if (data[i]["review"]["rating"] != "0.0") {
+
+            controller.tottalratinguser.add(data[i]["review"]["rating"]);
+
+            print(data[i]["review"]["rating"]);
+             
+           }
+            }
+
+          controller.tottalrating();
+            print(controller.sum);
+            print(controller.rating);
+          
           return Scaffold(
             appBar: AppBar(
               actions: const [],
@@ -46,7 +73,7 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       FutureBuilder(
                           future: StoreServices.getProduct(),
@@ -76,12 +103,12 @@ class HomeScreen extends StatelessWidget {
                   ),
                   sizedBoxWidget(height: 16),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       dashBoardWidget(
                           context: context,
                           text1: "Rateing",
-                          text2: "5",
+                          text2: controller.rating.toStringAsFixed(1),
                           // totalRating
                           //     .reduce((value, element) => value + element),
                           icon: "assets/icons/star.png"),

@@ -1,4 +1,5 @@
 import 'package:ecommerse_seller_dev_app/const/const.dart';
+import 'package:ecommerse_seller_dev_app/firebase_options.dart';
 import 'package:ecommerse_seller_dev_app/views/auth/login_screen.dart';
 import 'package:ecommerse_seller_dev_app/views/home/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,7 +8,7 @@ import 'package:get/get.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 

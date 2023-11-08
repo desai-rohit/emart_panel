@@ -39,7 +39,7 @@
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
 </head>
-<body>
+<!-- <body>
   <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
@@ -54,6 +54,27 @@
         }
       });
     });
+  </script>
+</body> -->
+<body>
+  <script>
+    let useHtml = true;
+
+    window.addEventListener('load', function(ev) {
+    _flutter.loader.loadEntrypoint({
+      serviceWorker: {
+        serviceWorkerVersion: serviceWorkerVersion,
+      },
+      onEntrypointLoaded: function(engineInitializer) {
+        let config = {
+          renderer: useHtml ? "html" : "canvaskit",
+        };
+        engineInitializer.initializeEngine(config).then(function(appRunner) {
+          appRunner.runApp();
+        });
+      }
+    });
+  });
   </script>
 </body>
 </html>

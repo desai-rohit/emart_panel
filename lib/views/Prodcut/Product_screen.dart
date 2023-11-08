@@ -10,6 +10,7 @@ class ProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
     return FutureBuilder(
         future: StoreServices.getProduct(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -35,11 +36,14 @@ class ProductScreen extends StatelessWidget {
                     physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     itemCount: data.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 16,
-                            mainAxisSpacing: 16),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: width > 1000
+                            ? 5
+                            : width > 800
+                                ? 4
+                                : 2,
+                        crossAxisSpacing: 16,
+                        mainAxisSpacing: 16),
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {

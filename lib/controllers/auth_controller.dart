@@ -7,18 +7,48 @@ class AuthController extends GetxController {
   var isLoading = false.obs;
 
   // text controller
-  var emailcontroller = TextEditingController().obs;
+  var emailcontroller = TextEditingController();
   var passwordcontroller = TextEditingController();
+  var reenterpasswordcontroller = TextEditingController();
   var namecontroller = TextEditingController();
-  var addresscontroller = TextEditingController();
-  var email = "".obs;
+
+  var loginemailcontroller = TextEditingController();
+  var loginpasswordcontroller = TextEditingController();
+
+  // var email = "".obs;
   //login method
-  Future<UserCredential?> loginMethod(context) async {
+  Future loginMethod(email, password, context) async {
+    isLoading.isTrue;
+    ChangeNotifier();
+
+    // UserCredential? userCredential;
+    final FirebaseAuth auth = FirebaseAuth.instance;
+
+    try {
+      var authenticatedUser = await auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      if (authenticatedUser.user!.emailVerified) {
+        VxToast.show(context, msg: "Email Address Verified");
+      } else {
+        VxToast.show(context, msg: "Email Address Not Verified");
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        VxToast.show(context, msg: "No User Found This Email");
+      } else if (e.code == 'wrong-password') {
+        VxToast.show(context, msg: "Wrong password provided for that user");
+      }
+    }
+    isLoading.isFalse;
+    ChangeNotifier();
+  }
+
+  Future<UserCredential?> signupMethod(email, password, context) async {
     UserCredential? userCredential;
 
     try {
-      await auth.signInWithEmailAndPassword(
-          email: emailcontroller.value.text, password: passwordcontroller.text);
+      await auth.createUserWithEmailAndPassword(
+          email: email, password: password);
     } on FirebaseAuthException catch (e) {
       VxToast.show(context, msg: e.toString());
     }
@@ -26,7 +56,11 @@ class AuthController extends GetxController {
     return userCredential;
   }
 
-  storeUserData({name, password, email, address}) async {
+  storeUserData({
+    name,
+    password,
+    email,
+  }) async {
     DocumentReference store =
         firestore.collection(venderCOllection).doc(currentUser!.uid);
     store.set({
@@ -35,9 +69,9 @@ class AuthController extends GetxController {
       "email": email,
       "image": "",
       "id": currentUser!.uid,
-      "address": address,
+      "address": "",
     }, SetOptions(merge: true)).then(
-        (value) => {emailcontroller.value.clear(), passwordcontroller.clear()});
+        (value) => {emailcontroller.clear(), passwordcontroller.clear()});
   }
 
   //signOut Method
@@ -47,5 +81,12 @@ class AuthController extends GetxController {
     } catch (e) {
       VxToast.show(context, msg: e.toString());
     }
+  }
+
+  bool passwwordvalidateStructure(String value) {
+    String pattern =
+        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+    RegExp regExp = RegExp(pattern);
+    return regExp.hasMatch(value);
   }
 }

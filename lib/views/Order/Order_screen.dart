@@ -124,10 +124,12 @@ class OrderScreen extends StatelessWidget {
                                                 data: data[index]));
                                           },
                                           child: ListTile(
-                                            title: Text(data[index]["order"][0]
-                                                ["title"]),
+                                            title: Text(
+                                                maxLines: 2,
+                                                data[index]["order"]["title"]
+                                                    .toString()),
                                             leading: Image.network(
-                                              data[index]["order"][0]["img"],
+                                              data[index]["order"]["img"],
                                               cacheHeight: 100,
                                             ),
                                             subtitle: Column(
@@ -151,7 +153,7 @@ class OrderScreen extends StatelessWidget {
                                               ],
                                             ),
                                             trailing: Text(
-                                              "RS ${data[index]["order"][0]["tprice"]}",
+                                              "RS ${data[index]["order"]["tprice"]}",
                                               style: const TextStyle(
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.bold,

@@ -44,6 +44,7 @@ dependencies:
   velocity_x: ^4.1.0
   flutter_material_pickers: ^3.5.0
   intl: ^0.18.1
+  permission_handler: ^11.0.0
 
 
 dev_dependencies:
