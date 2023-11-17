@@ -4,7 +4,6 @@ import 'package:ecommerse_seller_dev_app/views/auth/forget_password.dart';
 import 'package:ecommerse_seller_dev_app/views/auth/signup_screen.dart';
 import 'package:ecommerse_seller_dev_app/views/widget/normal_text.dart';
 import 'package:ecommerse_seller_dev_app/views/widget/sizedbox_widget.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 
 import 'package:get/get.dart';

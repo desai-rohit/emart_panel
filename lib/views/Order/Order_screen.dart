@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerse_seller_dev_app/const/const.dart';
 import 'package:ecommerse_seller_dev_app/services/store_services.dart';
-import 'package:ecommerse_seller_dev_app/views/Order/Order_confirm.dart';
+import 'package:ecommerse_seller_dev_app/views/Order/order_confirm.dart';
 import 'package:ecommerse_seller_dev_app/views/widget/sizedbox_widget.dart';
 import 'package:get/get.dart';
 

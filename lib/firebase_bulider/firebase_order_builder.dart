@@ -15,7 +15,6 @@ Widget firebaseOrderBilder({Widget? widget}) {
           child: Text("No Orders Yet"),
         );
       } else {
-        var data = snapshot.data!.docs;
 
         return widget!;
       }

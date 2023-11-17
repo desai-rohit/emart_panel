@@ -37,7 +37,7 @@ const List<String> toys = <String>[
   "doll",
 ];
 
-const List<String> Mobile = <String>[
+const List<String> mobile = <String>[
   'Bike',
   "Car",
   "doll",

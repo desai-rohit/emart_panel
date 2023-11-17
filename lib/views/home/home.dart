@@ -1,8 +1,8 @@
 import 'package:ecommerse_seller_dev_app/const/const.dart';
 import 'package:ecommerse_seller_dev_app/controllers/home_scntroller.dart';
-import 'package:ecommerse_seller_dev_app/views/Order/Order_screen.dart';
-import 'package:ecommerse_seller_dev_app/views/Prodcut/Product_screen.dart';
-import 'package:ecommerse_seller_dev_app/views/home/Home_screen.dart';
+import 'package:ecommerse_seller_dev_app/views/Order/order_screen.dart';
+import 'package:ecommerse_seller_dev_app/views/Prodcut/product_screen.dart';
+import 'package:ecommerse_seller_dev_app/views/home/home_screen.dart';
 import 'package:ecommerse_seller_dev_app/views/setting/setting%20Screen/setting_screen.dart';
 import 'package:get/get.dart';
 

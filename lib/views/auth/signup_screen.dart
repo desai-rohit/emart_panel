@@ -1,6 +1,6 @@
 import 'package:ecommerse_seller_dev_app/const/const.dart';
 import 'package:ecommerse_seller_dev_app/controllers/auth_controller.dart';
-import 'package:ecommerse_seller_dev_app/views/auth/EmailVerification.dart';
+import 'package:ecommerse_seller_dev_app/views/auth/email_verification.dart';
 import 'package:ecommerse_seller_dev_app/views/auth/forget_password.dart';
 import 'package:ecommerse_seller_dev_app/views/auth/login_screen.dart';
 import 'package:ecommerse_seller_dev_app/views/home/home.dart';

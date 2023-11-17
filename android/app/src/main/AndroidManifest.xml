@@ -9,7 +9,7 @@
 
 
     <application
-        android:label="ecommerse_seller_dev_app"
+        android:label="emart panel"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

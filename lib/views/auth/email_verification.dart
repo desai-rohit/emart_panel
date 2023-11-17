@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:ecommerse_seller_dev_app/views/auth/login_screen.dart';
-import 'package:ecommerse_seller_dev_app/views/home/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

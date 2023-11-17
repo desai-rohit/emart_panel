@@ -10,8 +10,6 @@ import 'package:ecommerse_seller_dev_app/views/widget/normal_text.dart';
 import 'package:ecommerse_seller_dev_app/views/widget/sizedbox_widget.dart';
 
 import 'package:get/get.dart';
-import 'package:collection/collection.dart';
-
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -21,10 +19,9 @@ class HomeScreen extends StatelessWidget {
     // var ordercontroller = Get.put(firebaseOrderController());
     // var controller = Get.put(AuthController());
     List<QueryDocumentSnapshot<Object?>> productdata;
-   // List totalRating = [5.0,5.0,4.1,4.5];
-     var controller = Get.put(HomeController());
-     // final sum = totalRating.sum;
-
+    // List totalRating = [5.0,5.0,4.1,4.5];
+    var controller = Get.put(HomeController());
+    // final sum = totalRating.sum;
 
     return StreamBuilder(
       stream: StoreServices.getOrderProduct(currentUser!.uid),
@@ -40,25 +37,20 @@ class HomeScreen extends StatelessWidget {
         } else {
           var data = snapshot.data!.docs;
           for (var i = 0; i < data.length; i++) {
-           // totalRating.add(data[i]["review"]["rating"]);
-           // print(data[i]["review"]["rating"]);
-           controller.totalRating.add(double.parse(data[i]["review"]["rating"]).toDouble());
+            // totalRating.add(data[i]["review"]["rating"]);
+            // print(data[i]["review"]["rating"]);
+            controller.totalRating
+                .add(double.parse(data[i]["review"]["rating"]).toDouble());
 
-           controller.ratingsum();
+            controller.ratingsum();
 
-           if (data[i]["review"]["rating"] != "0.0") {
-
-            controller.tottalratinguser.add(data[i]["review"]["rating"]);
-
-            print(data[i]["review"]["rating"]);
-             
-           }
+            if (data[i]["review"]["rating"] != "0.0") {
+              controller.tottalratinguser.add(data[i]["review"]["rating"]);
             }
+          }
 
           controller.tottalrating();
-            print(controller.sum);
-            print(controller.rating);
-          
+
           return Scaffold(
             appBar: AppBar(
               actions: const [],
