@@ -50,12 +50,12 @@ class AddProduct extends StatefulWidget {
   State<AddProduct> createState() => _AddProductState();
 }
 
-class colorslistclass {
+class ColorsLiistClass {
   String? colorsname;
-  int? colors_properti;
+  int? colorsproperti;
 
-  colorslistclass({String? colorsname, int? colors_properti}) {
-    this.colors_properti = colors_properti;
+  colorslistclass({String? colorsname, int? colorsproperti}) {
+    this.colorsproperti = colorsproperti;
     this.colorsname = colorsname;
   }
 }
@@ -63,7 +63,7 @@ class colorslistclass {
 class _AddProductState extends State<AddProduct> {
   var controller = Get.put(ProductAddController());
 
-  var colorsclass = colorslistclass();
+  var colorsclass = ColorsLiistClass();
 
   var rndnumber = "";
 
@@ -82,7 +82,6 @@ class _AddProductState extends State<AddProduct> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     randomNumber();
   }
@@ -140,6 +139,7 @@ class _AddProductState extends State<AddProduct> {
                                     await Permission.photos.request();
 
                                 if (status.isGranted) {
+                                  // ignore: use_build_context_synchronously
                                   controller.chnageImage(context);
                                 } else {
                                   openAppSettings();

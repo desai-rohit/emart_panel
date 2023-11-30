@@ -62,11 +62,11 @@ class SettingScreen extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        const CircleAvatar(
+                         CircleAvatar(
                           backgroundColor: Colors.white,
                           radius: 50,
                           backgroundImage: NetworkImage(
-                            "https://www.freepnglogos.com/uploads/classic-samsung-logo-png-0.png",
+                            controller.snapshotData!["image"],
                           ),
                         ),
                         sizedBoxWidget(width: 16),

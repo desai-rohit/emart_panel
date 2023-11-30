@@ -3,17 +3,33 @@ import 'package:ecommerse_seller_dev_app/controllers/home_scntroller.dart';
 import 'package:ecommerse_seller_dev_app/views/Order/order_screen.dart';
 import 'package:ecommerse_seller_dev_app/views/Prodcut/product_screen.dart';
 import 'package:ecommerse_seller_dev_app/views/home/home_screen.dart';
+import 'package:ecommerse_seller_dev_app/views/no_internet/no_internet.dart';
+import 'package:ecommerse_seller_dev_app/views/no_internet/provider_internet.dart';
 import 'package:ecommerse_seller_dev_app/views/setting/setting%20Screen/setting_screen.dart';
 import 'package:get/get.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
 
-  //int index = 0;
+  @override
+  State<Home> createState() => _HomeState();
+}
 
+class _HomeState extends State<Home> {
+
+  @override
+  void initState() {
+ var controller = Get.put(ProviderInternet()); 
+
+ controller.startMonitoring();
+    super.initState();
+  }
+  //int index = 0;
   @override
   Widget build(BuildContext context) {
     var controller = Get.put(HomeController());
+     var providerinternet = Get.put(ProviderInternet()); 
+
     var navScreen = [
       const HomeScreen(),
       const ProductScreen(),
@@ -24,10 +40,12 @@ class Home extends StatelessWidget {
       body: Column(
         children: [
           Obx(() => Expanded(
-                  child: IndexedStack(
+                  child: providerinternet.isOnline.value? IndexedStack(
                 index: controller.navIndex.value,
                 children: navScreen,
-              )))
+              ):const NoInternet()
+              )
+              )
         ],
       ),
       bottomNavigationBar: Obx(
